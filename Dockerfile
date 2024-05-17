@@ -1,15 +1,14 @@
 FROM maven:3.8.3-openjdk-17 AS build
 
-COPY /src /app/src
+COPY . .
 
-COPY /pom.xml /app
-
-RUN mvn -f /app/pom.xml clean package -Dmaven.test.skip
+RUN mvn clean package -Dmaven.test.skip
 
 FROM openjdk:22-ea-17-jdk-oracle
 
+COPY --from=build /app/target/*.jar  app.jar
+
 EXPOSE 8080
 
-COPY --from=build /app/target/*.jar  app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]
