@@ -6,10 +6,10 @@ COPY /pom.xml /app
 
 RUN mvn clean package -Dmaven.test.skip
 
-FROM penjdk:22-ea-17-jdk-oracle
+FROM openjdk:23-ea-17-jdk
 
 EXPOSE 8080
 
 COPY --from=build /app/target/*.jar  app.jar
 
-ENTRYPOINT ["java","-jar", "/app.jar"]
+ENTRYPOINT ["java","-jar", "app.jar"]
