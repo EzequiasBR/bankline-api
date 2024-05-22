@@ -1,7 +1,5 @@
 package com.dio.santander.banklineapi.model;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -20,7 +18,7 @@ public class Movimentacao {
    private Integer id;
    
    @Column(name = "data_hora")
-   private LocalDateTime hora;
+   private String dataHora;
    
    private String descricao;
    private Double valor;
@@ -38,11 +36,12 @@ public class Movimentacao {
    public void setId(Integer id) {
 	this.id = id;
    }
-   public LocalDateTime getHora() {
-	return hora;
+  
+   public String getDataHora() {
+	return dataHora;
    }
-   public void setHora(LocalDateTime hora) {
-	this.hora = hora;
+   public void setDataHora(String string) {
+		this.dataHora = string;
    }
    public String getDescricao() {
 	return descricao;
